@@ -1,6 +1,6 @@
 # Un jardín de tulipanes para Ady 🌷
 
-Carta digital interactiva construida con React, Vite, Motion y SVG. No requiere servidor ni base de datos.
+Carta digital interactiva construida con React, Vite, Motion y SVG. Incluye nueve tulipanes que crecen por etapas, cinco mensajes florales, una abejita que cruza la carta, un ramo con destellos, una melodía instrumental original y efectos de papel. No requiere servidor ni base de datos.
 
 ## Desarrollo
 
@@ -22,7 +22,7 @@ npm run preview
 
 Edita `src/data/config.js` para cambiar nombre, remitente, mensajes, párrafos, referencias, colores, tiempos, partículas y audio. Los párrafos de la carta están agrupados en páginas. Sustituye `[Tu nombre]` mediante `sender`. Las referencias bíblicas y sus explicaciones están en `verses` y enlazan a jw.org.
 
-Para mostrar la ilustración definitiva, coloca un PNG transparente en `public/assets/ady-2d.png` o cambia `illustration` a un archivo WebP. Si no existe, aparece una silueta provisional sin rasgos faciales. La música es una melodía original sintetizada por el navegador. También hay efectos breves al abrir la carta y pasar de página. Todo el sonido está apagado al cargar y solo se activa con el botón «Escuchar el jardín»; `audio.enabled` puede ocultar ese control.
+Para mostrar la ilustración definitiva, coloca un PNG transparente en `public/assets/ady-2d.png` o cambia `illustration` a un archivo WebP. Si no existe, aparece una silueta provisional sin rasgos faciales. La música instrumental original está incluida en `public/audio/jardin-de-ady.wav` y se reproduce en bucle. Al abrir la carta y pasar de página suenan efectos de papel y se anima el giro de página. Todo el sonido está apagado al cargar y solo se activa con el botón «Escuchar el jardín»; `audio.enabled` puede ocultar ese control.
 
 ## Publicación
 
