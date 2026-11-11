@@ -51,6 +51,12 @@ export const config = {
       'No tienes que correr para llegar a ninguna parte. Seguir con fe y con alegría, aun despacito, también es avanzar.'
     ],
     [
+      'Hay algo más que quería decirte, Pequeña Ady: me gusta que te tomes en serio las cosas que son importantes para ti. Esa dedicación habla de tus ganas de aprender y de dar lo mejor de ti.',
+      'Al mismo tiempo, espero que te concedas momentos para respirar y disfrutar lo que ya has alcanzado. Terminaste tu primera escuela; puedes mirar este logro con una sonrisa y guardarlo entre tus recuerdos bonitos.',
+      'Tu sensibilidad y tu fuerza pueden ir juntas. Puedes emocionarte, tener un día difícil, pedir perdón o perdonar, y seguir siendo tú: alguien que se esfuerza por hacer lo correcto.',
+      'Ojalá este jardín te lo recuerde cuando vuelvas a verlo: cada flor abre a su tiempo, y cada paso que das con amor tiene su propio valor.'
+    ],
+    [
       'Y bueno... aunque no puedo regalarte un jardín entero de tulipanes, por lo menos puedo regalarte uno que nunca se marchite. 🌷',
       'Me da mucho gusto verte alcanzar esta meta. Se nota tu esfuerzo, tu corazón y las ganas que pones en lo que haces.',
       'Que nunca te falte la fe para comenzar, la alegría para continuar y una amistad que te recuerde lo mucho que vales.',

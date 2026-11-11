@@ -1,6 +1,5 @@
 // Música instrumental original en public/audio. Solo comienza con un gesto del usuario.
-import { config } from './data/config.js'
-let music, context, enabled = false
+let context, enabled = false
 function ctx() { context ||= new (window.AudioContext || window.webkitAudioContext)(); return context }
 function tone(freq, at, duration, volume, type = 'sine') {
   const audio = ctx(), osc = audio.createOscillator(), gain = audio.createGain()
@@ -19,12 +18,10 @@ function rustle(at, length, volume) {
   filter.Q.value = .55; gain.gain.value = volume
   source.connect(filter).connect(gain).connect(audio.destination); source.start(at)
 }
-export function setAudioEnabled(value) {
+export function setEffectsEnabled(value) {
   enabled = value
-  music ||= new Audio(config.audio.src)
-  music.loop = true; music.volume = .48
-  if (value) { ctx().resume(); music.play().catch(() => { enabled = false }) }
-  else { music.pause(); context?.suspend() }
+  if (value) ctx().resume()
+  else context?.suspend()
 }
 export function soundEffect(kind) {
   if (!enabled) return

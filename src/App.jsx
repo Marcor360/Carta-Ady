@@ -7,11 +7,22 @@ import Envelope from './components/Envelope.jsx'
 import AdyIllustration from './components/AdyIllustration.jsx'
 import LetterBee from './components/LetterBee.jsx'
 import { config } from './data/config.js'
-import { setAudioEnabled, soundEffect } from './audio.js'
+import { setEffectsEnabled, soundEffect } from './audio.js'
 
 const fade = {initial:{opacity:0,y:18},animate:{opacity:1,y:0},exit:{opacity:0,y:-12},transition:{duration:.65}}
 function RichText({text}) {return text.split(/(\*\*[^*]+\*\*)/g).map((part,i)=>{if(!part.startsWith('**'))return part.replace('[Tu nombre]',config.sender);const value=part.slice(2,-2).replace('[Tu nombre]',config.sender),verse=config.verses[value];return verse?<a className="verse-link" key={i} href={verse.url} target="_blank" rel="noopener noreferrer" aria-label={`Leer ${value} en jw.org (se abre en otra pestaña)`}>{value} <span aria-hidden="true">↗</span></a>:<strong key={i}>{value}</strong>})}
-function SoundToggle(){const [on,setOn]=useState(false);useEffect(()=>()=>setAudioEnabled(false),[]); if(!config.audio.enabled)return null;return <button className="sound-toggle" onClick={()=>{setAudioEnabled(!on);setOn(!on)}} aria-pressed={on} aria-label={on?'Silenciar música y efectos':'Activar música y efectos'}>{on?'♫ Sonido activado':'♫ Escuchar el jardín'}</button>}
+function SoundToggle(){
+ const audio=useRef(null),[on,setOn]=useState(false),[volume,setVolume]=useState(.9),[error,setError]=useState('')
+ useEffect(()=>()=>{audio.current?.pause();setEffectsEnabled(false)},[])
+ if(!config.audio.enabled)return null
+ async function toggle(){
+  if(on){audio.current.pause();setEffectsEnabled(false);setOn(false);return}
+  setError('');audio.current.volume=volume;setEffectsEnabled(true)
+  try{await audio.current.play();setOn(true)}
+  catch{setEffectsEnabled(false);setOn(false);setError('No se pudo reproducir la música en este navegador.')}
+ }
+ return <div className="sound-player"><audio ref={audio} src={config.audio.src} loop preload="metadata" onError={()=>setError('No se pudo cargar la música.')}/><button className="sound-toggle" onClick={toggle} aria-pressed={on}>{on?'❚❚ Pausar música':'♫ Reproducir música'}</button><label className="sound-volume">Volumen <input type="range" min="0" max="1" step="0.05" value={volume} onChange={e=>{const next=Number(e.target.value);setVolume(next);if(audio.current)audio.current.volume=next}} aria-label="Volumen de la música"/></label><span className="sound-status" role="status">{error|| (on?'Música sonando':'Toca para escuchar')}</span></div>
+}
 export default function App(){
  const [scene,setScene]=useState('intro'),[introStep,setIntroStep]=useState(0),[messageStep,setMessageStep]=useState(0),[page,setPage]=useState(0),[secret,setSecret]=useState(false),[opening,setOpening]=useState(false),[turning,setTurning]=useState(false)
  const reduce=useReducedMotion();const contentRef=useRef(null)
