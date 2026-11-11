@@ -1,7 +1,7 @@
-// Edita aquí toda la historia. La ilustración final puede ponerse en public/assets/adi-2d.png.
+// Edita aquí toda la historia. La ilustración final puede ponerse en public/assets/ady-2d.png.
 export const config = {
-  name: 'Adi', nickname: 'pequeña', sender: '[Tu nombre]',
-  illustration: '/assets/adi-2d.png', audio: { enabled: true },
+  name: 'Ady', nickname: 'Pequeña Ady', sender: '[Tu nombre]',
+  illustration: '/assets/ady-2d.png', audio: { enabled: true },
   verses: {
     'Hebreos 6:10': { url: 'https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/hebreos/6/#v58006010', explanation: 'Jehová recuerda el amor que mostramos por él y el trabajo que hacemos para ayudar a otros. Hasta los esfuerzos discretos tienen valor para él.' },
     '1 Corintios 15:58': { url: 'https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/1-corintios/15/#v46015058', explanation: 'Nos anima a mantenernos firmes y ocupados en la obra del Señor, con la seguridad de que ese esfuerzo no es en vano.' }
@@ -14,12 +14,12 @@ export const config = {
     { color: '#F3C7BB', light: '#FFE6D7', shape: 3, height: 294, tilt: 9, label: 'Perseverancia', message: 'Que cada nuevo reto te ayude a fortalecerte' },
     { color: '#F9F3E8', light: '#FFFFFF', shape: 4, height: 260, tilt: -7, label: 'Amistad', message: 'Que siempre tengas personas que te animen a seguir' },
   ],
-  intro: ['Hay flores que tardan en florecer...', 'Pero cuando lo hacen, nos recuerdan lo hermoso que es crecer.', 'Hoy quiero regalarte unas flores, Adi. 🌷'],
-  messages: ['Pequeña, hoy es un día muy especial.', 'Terminaste tu primera Escuela del Servicio de Precursor.', 'Sé cuánto te esfuerzas por seguir adelante. Y aunque unas flores no bastan para celebrarlo, quise prepararte algo diferente.'],
-  letterTitle: 'Para ti, Adi 🌷',
+  intro: ['Hay flores que tardan en florecer...', 'Pero cuando lo hacen, nos recuerdan lo hermoso que es crecer.', 'Hoy quiero regalarte unas flores, Ady. 🌷'],
+  messages: ['Pequeña Ady, hoy es un día muy especial.', 'Terminaste tu primera Escuela del Servicio de Precursor.', 'Sé cuánto te esfuerzas por seguir adelante. Y aunque unas flores no bastan para celebrarlo, quise prepararte algo diferente.'],
+  letterTitle: 'Para ti, Ady 🌷',
   letterPages: [
     [
-      '¡Felicidades, pequeña!',
+      '¡Felicidades, Pequeña Ady!',
       'Hoy quiero dedicarte unas palabras porque acabas de terminar algo muy especial: tu primera Escuela del Servicio de Precursor.',
       'Quizás para algunas personas sean solo unos días de clases, pero sé que para ti representa mucho más. Es una oportunidad de aprender, fortalecer tu amistad con Jehová y seguir creciendo en algo que haces con mucho cariño.',
       'Y precisamente por eso quise regalarte estas flores.',
@@ -34,24 +34,24 @@ export const config = {
     [
       'A veces puedes enojarte, como cualquiera. Pero también sabes perdonar, y eso dice mucho del corazón noble que tienes. No hace falta ser perfecta para ser una persona valiosa.',
       'Hay un texto que me gusta especialmente para esta ocasión: **Hebreos 6:10**.',
-      'Y eso es algo que deseo que siempre tengas presente, Adi. Cada esfuerzo que haces para servirle tiene valor, incluso esos pequeños esfuerzos que quizá nadie más llega a ver.'
+      'Y eso es algo que deseo que siempre tengas presente, Ady. Cada esfuerzo que haces para servirle tiene valor, incluso esos pequeños esfuerzos que quizá nadie más llega a ver.'
     ],
     [
       'También quiero recordarte las palabras de **1 Corintios 15:58**.',
       'Deseo de corazón que esta primera escuela sea uno de muchos recuerdos bonitos en tu camino, que sigas aprendiendo y que nunca pierdas esa alegría de hacer cosas por Jehová.',
-      'Sigue creciendo a tu ritmo, pequeña. No necesitas tener todas las respuestas ni saberlo todo. Lo bonito es seguir avanzando, un día a la vez.',
+      'Sigue creciendo a tu ritmo, Pequeña Ady. No necesitas tener todas las respuestas ni saberlo todo. Lo bonito es seguir avanzando, un día a la vez.',
       'Si un día llueve en tu jardín, recuerda que hasta la lluvia ayuda a florecer. Y cuando vuelva el sol, que te encuentre con ganas de crecer.'
     ],
     [
       'Y bueno... aunque no puedo regalarte un jardín entero de tulipanes, por lo menos puedo regalarte uno que nunca se marchite. 🌷',
       'Me da mucho gusto verte alcanzar esta meta. Se nota tu esfuerzo, tu corazón y las ganas que pones en lo que haces.',
       'Que nunca te falte la fe para comenzar, la alegría para continuar y una amistad que te recuerde lo mucho que vales.',
-      '**¡Muchas felicidades, Adi!**',
+      '**¡Muchas felicidades, Ady!**',
       'Con mucho cariño,',
       '**[Tu nombre]**'
     ]
   ],
-  secret: 'P. D. Pequeña, estas flores no necesitan agua... pero sí necesitaban llegar hasta ti. 🌷',
-  finalTitle: 'Sigue floreciendo, Adi.',
+  secret: 'P. D. Pequeña Ady, estas flores no necesitan agua... pero sí necesitaban llegar hasta ti. 🌷',
+  finalTitle: 'Sigue floreciendo, Ady.',
   finalLines: ['Que Jehová siga bendiciendo cada paso que das', 'Felicidades por tu primera Escuela del Servicio de Precursor. 🌷']
 }

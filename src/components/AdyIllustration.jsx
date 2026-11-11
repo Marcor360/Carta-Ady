@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { config } from '../data/config.js'
 
-// Figura sin rostro: las fotografías futuras darán los rasgos reales de Adi.
+// Figura sin rostro: las fotografías futuras darán los rasgos reales de Ady.
 function Placeholder() {
  const flowers = [
   {x:156,y:258,c:'#EFA6B5',r:-18},{x:195,y:210,c:'#C9B6E4',r:-8},
@@ -9,7 +9,7 @@ function Placeholder() {
   {x:318,y:250,c:'#F9F3E8',r:26},{x:212,y:274,c:'#F9F3E8',r:-3},
   {x:283,y:285,c:'#C9B6E4',r:14}
  ]
- return <svg className="adi-placeholder-svg" viewBox="0 95 470 465" role="img" aria-label="Ilustración provisional, sin rasgos faciales, con un ramo de tulipanes" xmlns="http://www.w3.org/2000/svg">
+ return <svg className="ady-placeholder-svg" viewBox="0 95 470 465" role="img" aria-label="Ilustración provisional, sin rasgos faciales, con un ramo de tulipanes" xmlns="http://www.w3.org/2000/svg">
   <ellipse cx="235" cy="527" rx="196" ry="19" fill="#b6aa91" opacity=".2"/>
   <path d="M151 553c8-106 31-174 84-174s76 68 84 174" fill="#c9b6e4" stroke="#a994c8" strokeWidth="2"/>
   <path d="M195 384c-4-19-18-24-18-54v-65c0-58 28-90 58-90s58 32 58 90v65c0 30-14 35-18 54" fill="#d8d2c4" stroke="#bdb5a5" strokeWidth="2"/>
@@ -29,7 +29,7 @@ function Placeholder() {
   <circle cx="233" cy="431" r="13" fill="#d8d2c4"/>
  </svg>
 }
-export default function AdiIllustration() {
+export default function AdyIllustration() {
  const [failed,setFailed]=useState(false)
- return <div className="adi-illustration">{!failed?<img src={config.illustration} onError={()=>setFailed(true)} alt="Ilustración de Adi con un ramo de tulipanes"/>:<Placeholder/>}</div>
+ return <div className="ady-illustration">{!failed?<img src={config.illustration} onError={()=>setFailed(true)} alt="Ilustración de Ady con un ramo de tulipanes"/>:<Placeholder/>}</div>
 }

@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import TulipGarden from './components/TulipGarden.jsx'
 import FloatingPetals from './components/FloatingPetals.jsx'
 import Envelope from './components/Envelope.jsx'
-import AdiIllustration from './components/AdiIllustration.jsx'
+import AdyIllustration from './components/AdyIllustration.jsx'
 import { config } from './data/config.js'
 import { setAudioEnabled, soundEffect } from './audio.js'
 
@@ -26,7 +26,7 @@ export default function App(){
   <FloatingPetals active={scene!=='letter'&&!reduce}/>
   <AnimatePresence mode="wait">
    {scene==='intro'&&<motion.main key="intro" className="scene intro-scene" {...fade} ref={contentRef} tabIndex={-1}>
-    <div className="topline"><span>UNA CARTA QUE FLORECE</span><span>✳ &nbsp; PARA ADI</span></div>
+    <div className="topline"><span>UNA CARTA QUE FLORECE</span><span>✳ &nbsp; PARA ADY</span></div>
     <div className="intro-copy"><p className="eyebrow">Un pequeño regalo para ti</p><h1>Hay flores que<br/><em>cuentan historias.</em><br/>Esta es la tuya.</h1></div>
     <TulipGarden onSecret={()=>{soundEffect('flower');setSecret(true)}} onFlower={()=>soundEffect('flower')}/>
     <div className="intro-bottom"><div className="story-lines" aria-live="polite">{introStep>0&&<motion.p {...fade}>{config.intro[Math.min(introStep-1,2)]}</motion.p>}</div>{introStep>=3&&<motion.button {...fade} className="primary-button" onClick={()=>setScene('message')}>Tengo algo para ti <span>→</span></motion.button>}</div>
@@ -39,7 +39,7 @@ export default function App(){
     <div className="letter-side-flower">✿</div><div className="letter-paper"><div className="letter-ornament">✳ &nbsp; UNA CARTA PARA TI &nbsp; ✳</div><h2>{config.letterTitle}</h2><div className="letter-rule"/><AnimatePresence mode="wait"><motion.div key={page} className="letter-body" initial={{opacity:0,x:18}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-18}} transition={{duration:reduce?.1:.45}}>{config.letterPages[page].map((p,i)=><motion.div className="letter-paragraph" key={i} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{delay:reduce?0:i*.18}}><p><RichText text={p}/></p>{Object.entries(config.verses).map(([name,verse])=>p.includes(`**${name}**`)&&<aside className="verse-note" key={name}><span>PARA LLEVAR EN EL CORAZÓN</span><p>{verse.explanation}</p><a href={verse.url} target="_blank" rel="noopener noreferrer">Leer {name} en jw.org →</a></aside>)}</motion.div>)}</motion.div></AnimatePresence><div className="letter-controls"><button disabled={page===0} onClick={()=>turnPage(page-1)}>← Página anterior</button><span>{String(page+1).padStart(2,'0')} / {String(config.letterPages.length).padStart(2,'0')}</span>{page<config.letterPages.length-1?<button onClick={()=>turnPage(page+1)}>Continuar leyendo →</button>:<button onClick={()=>setScene('final')}>Ver mi regalo →</button>}</div></div><div className="letter-side-flower right">✿</div>
    </motion.main>}
    {scene==='final'&&<motion.main key="final" className="scene final-scene" {...fade} ref={contentRef} tabIndex={-1}>
-    <div className="final-visual"><div className="final-halo"/><AdiIllustration/><div className="final-ground"/></div><div className="final-copy"><p className="eyebrow">UNA FLOR QUE NUNCA SE MARCHITA &nbsp; · &nbsp; 05 / 05</p><h2>{config.finalTitle}</h2><p>{config.finalLines[0]}</p><p className="final-small">{config.finalLines[1]}</p><div className="final-actions"><button className="primary-button" onClick={()=>{setPage(0);setScene('letter')}}>Volver a leer mi carta →</button><button className="text-button" onClick={restart}>Ver de nuevo mis flores ↶</button></div></div>
+    <div className="final-visual"><div className="final-halo"/><AdyIllustration/><div className="final-ground"/></div><div className="final-copy"><p className="eyebrow">UNA FLOR QUE NUNCA SE MARCHITA &nbsp; · &nbsp; 05 / 05</p><h2>{config.finalTitle}</h2><p>{config.finalLines[0]}</p><p className="final-small">{config.finalLines[1]}</p><div className="final-actions"><button className="primary-button" onClick={()=>{setPage(0);setScene('letter')}}>Volver a leer mi carta →</button><button className="text-button" onClick={restart}>Ver de nuevo mis flores ↶</button></div></div>
    </motion.main>}
   </AnimatePresence>
   <AnimatePresence>{secret&&<motion.div className="secret-overlay" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSecret(false)}><motion.div className="secret-card" initial={{scale:.9,y:20}} animate={{scale:1,y:0}} onClick={e=>e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Mensaje secreto"><button onClick={()=>setSecret(false)} aria-label="Cerrar mensaje">×</button><span>✿</span><p>{config.secret}</p></motion.div></motion.div>}</AnimatePresence>
