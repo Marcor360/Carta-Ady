@@ -20,9 +20,9 @@ npm run preview
 
 ## Personalización
 
-Edita `src/data/config.js` para cambiar nombre, remitente, mensajes, párrafos, referencias, colores, tiempos, partículas y audio. Los párrafos de la carta están agrupados en páginas. Sustituye `[Tu nombre]` mediante `sender`.
+Edita `src/data/config.js` para cambiar nombre, remitente, mensajes, párrafos, referencias, colores, tiempos, partículas y audio. Los párrafos de la carta están agrupados en páginas. Sustituye `[Tu nombre]` mediante `sender`. Las referencias bíblicas y sus explicaciones están en `verses` y enlazan a jw.org.
 
-Para mostrar la ilustración definitiva, coloca un PNG transparente en `public/assets/adi-2d.png` o cambia `illustration` a un archivo WebP. Si no existe, aparece una silueta provisional. El audio está apagado por defecto; para habilitarlo, añade un archivo con derechos de uso en `public/assets/musica.mp3` y cambia `audio.enabled` a `true`. Nunca comienza automáticamente.
+Para mostrar la ilustración definitiva, coloca un PNG transparente en `public/assets/adi-2d.png` o cambia `illustration` a un archivo WebP. Si no existe, aparece una silueta provisional sin rasgos faciales. La música es una melodía original sintetizada por el navegador. También hay efectos breves al abrir la carta y pasar de página. Todo el sonido está apagado al cargar y solo se activa con el botón «Escuchar el jardín»; `audio.enabled` puede ocultar ese control.
 
 ## Publicación
 
