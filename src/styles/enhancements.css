@@ -82,3 +82,29 @@
 @media(max-width:700px){.sound-player{right:8px;top:8px;width:172px;padding:6px 8px}.sound-player .sound-toggle{font-size:.66rem}.bee-flight{inset:34px 9px 30px}.bee{width:45px;height:34px}}
 @media(prefers-reduced-motion:reduce){.bee{animation:none;left:calc(100% - 54px);top:7%}.bee-wing{animation:none}}
 @media(max-width:700px){.letter-scene{padding-top:105px}.letter-paper h2{font-size:clamp(2.4rem,10vw,3.5rem)}.topline span:last-child{display:none}}
+/* El vuelo se mantiene dentro del papel y gira con un cambio de dirección legible. */
+.bee-flight{inset:32px 30px 40px;overflow:visible}
+.bee{width:50px;height:38px;transform-origin:center;animation:bee-route 36s ease-in-out infinite}
+@keyframes bee-route{
+  0%{left:15px;top:20px;transform:rotate(-8deg) scaleX(1)}
+  18%{left:calc(100% - 65px);top:35px;transform:rotate(6deg) scaleX(1)}
+  22%{left:calc(100% - 65px);top:49px;transform:rotate(52deg) scaleX(1)}
+  44%{left:calc(100% - 65px);top:calc(100% - 80px);transform:rotate(83deg) scaleX(1)}
+  49%{left:calc(100% - 65px);top:calc(100% - 65px);transform:rotate(25deg) scaleX(1)}
+  53%{left:calc(100% - 70px);top:calc(100% - 65px);transform:rotate(-4deg) scaleX(-1)}
+  69%{left:15px;top:calc(100% - 65px);transform:rotate(4deg) scaleX(-1)}
+  73%{left:15px;top:calc(100% - 75px);transform:rotate(-48deg) scaleX(-1)}
+  94%{left:15px;top:35px;transform:rotate(-83deg) scaleX(-1)}
+  100%{left:15px;top:20px;transform:rotate(-8deg) scaleX(1)}
+}
+.intro-middle{display:flex;align-items:center;justify-content:center;gap:18px;margin:auto auto 0;padding:20px 18px 0;color:#927d71;font:italic 1.35rem 'Cormorant Garamond',serif;text-align:center;letter-spacing:.015em}
+.intro-middle-line{width:50px;height:1px;background:#c9b6e4;flex:0 0 auto}
+.intro-scene .garden{margin:25px auto 0}
+@media(max-width:700px){.intro-middle{font-size:1.1rem;gap:10px;padding-top:20px;max-width:340px}.intro-middle-line{width:24px}.intro-scene .garden{margin:7px auto 0}.bee-flight{inset:30px 13px 33px}.bee{width:44px;height:34px}}
+@media(prefers-reduced-motion:reduce){.bee{animation:none;left:calc(100% - 65px);top:25px;transform:none}}
+/* Mantiene visible el siguiente paso y da presencia a las flores en teléfonos. */
+@media(min-width:701px){.intro-scene .garden{height:310px;margin:4px auto 0}}
+@media(max-width:700px){.topline{justify-content:flex-start}.topline span:first-child{display:none}.topline span:last-child{display:block}.intro-scene .flower-slot{flex:0 0 14%;margin-left:-3%}.bee{width:44px;height:34px}}
+@media(max-width:380px){.intro-scene .garden{height:260px}.intro-scene .flower-slot{flex-basis:14.4%;margin-left:-3.4%}}
+@media(prefers-reduced-motion:reduce){.bee{left:10px;top:5px}}
+@media(min-width:701px){.intro-scene .garden{height:270px}}

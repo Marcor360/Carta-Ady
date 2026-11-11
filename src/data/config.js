@@ -4,7 +4,8 @@ export const config = {
   illustration: '/assets/ady-2d.png', audio: { enabled: true, src: '/audio/jardin-de-ady.wav' },
   verses: {
     'Hebreos 6:10': { url: 'https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/hebreos/6/#v58006010', explanation: 'Jehová recuerda el amor que mostramos por él y el trabajo que hacemos para ayudar a otros. Hasta los esfuerzos discretos tienen valor para él.' },
-    '1 Corintios 15:58': { url: 'https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/1-corintios/15/#v46015058', explanation: 'Nos anima a mantenernos firmes y ocupados en la obra del Señor, con la seguridad de que ese esfuerzo no es en vano.' }
+    '1 Corintios 15:58': { url: 'https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/1-corintios/15/#v46015058', explanation: 'Nos anima a mantenernos firmes y ocupados en la obra del Señor, con la seguridad de que ese esfuerzo no es en vano.' },
+    'Gálatas 6:9': { url: 'https://www.jw.org/es/biblioteca/biblia/biblia-estudio/libros/galatas/6/#v48006009', explanation: 'Nos anima a no cansarnos de hacer lo que está bien. La constancia tiene su tiempo de cosecha.' }
   },
   particleCount: 8, animationSeconds: 1,
   tulips: [
@@ -55,6 +56,13 @@ export const config = {
       'Al mismo tiempo, espero que te concedas momentos para respirar y disfrutar lo que ya has alcanzado. Terminaste tu primera escuela; puedes mirar este logro con una sonrisa y guardarlo entre tus recuerdos bonitos.',
       'Tu sensibilidad y tu fuerza pueden ir juntas. Puedes emocionarte, tener un día difícil, pedir perdón o perdonar, y seguir siendo tú: alguien que se esfuerza por hacer lo correcto.',
       'Ojalá este jardín te lo recuerde cuando vuelvas a verlo: cada flor abre a su tiempo, y cada paso que das con amor tiene su propio valor.'
+    ],
+    [
+      'Quise que esta carta tuviera varias páginas porque no quería dejar la felicitación en una sola frase. Terminar tu primera Escuela del Servicio de Precursor merece algo más que un «bien hecho» dicho de prisa.',
+      'Pienso en los tulipanes de este jardín: ninguno se abre exactamente igual. Unos se inclinan un poco, otros tardan más en mostrar su color. Todos siguen siendo flores bonitas. Tú también puedes crecer a tu manera, sin compararte con nadie.',
+      'Cuando el ánimo esté alto, disfruta la alegría. Y cuando cueste un poco más, recuerda **Gálatas 6:9**.',
+      'Ese texto me hace pensar en tu constancia. Seguir haciendo el bien no siempre se ve espectacular desde fuera, pero cada paso suma. Jehová conoce el cariño con el que das esos pasos.',
+      'Ojalá tengas muchos días para aprender, reír, emocionarte y volver a intentarlo. Y si alguna vez una lágrima se adelanta a la sonrisa, que nunca te haga olvidar la persona fuerte y noble que eres.'
     ],
     [
       'Y bueno... aunque no puedo regalarte un jardín entero de tulipanes, por lo menos puedo regalarte uno que nunca se marchite. 🌷',

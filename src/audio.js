@@ -26,7 +26,9 @@ export function setEffectsEnabled(value) {
 export function soundEffect(kind) {
   if (!enabled) return
   const at = ctx().currentTime + .02
-  if (kind === 'open') { rustle(at,.6,.11); tone(523.25,at+.1,.45,.055); tone(783.99,at+.29,.6,.042) }
-  if (kind === 'page') { rustle(at,.42,.16); tone(659.25,at+.12,.25,.025,'triangle') }
-  if (kind === 'flower') tone(659.25,at,.3,.03)
+  if (kind === 'welcome') { tone(523.25,at,.45,.04);tone(659.25,at+.1,.55,.035);tone(783.99,at+.22,.7,.028) }
+  if (kind === 'open') { rustle(at,.68,.13); tone(392,at+.12,.38,.042,'triangle'); tone(523.25,at+.28,.48,.046); tone(783.99,at+.43,.6,.038) }
+  if (kind === 'page') { rustle(at,.33,.15);rustle(at+.17,.26,.09);tone(587.33,at+.16,.18,.02,'triangle') }
+  if (kind === 'flower') { tone(659.25,at,.29,.032);tone(880,at+.12,.24,.018) }
+  if (kind === 'final') { tone(261.63,at,1.2,.035,'triangle');[392,523.25,659.25,783.99].forEach((note,i)=>tone(note,at+i*.16,.8,.042)) }
 }

@@ -22,7 +22,7 @@ npm run preview
 
 Edita `src/data/config.js` para cambiar nombre, remitente, mensajes, párrafos, referencias, colores, tiempos, partículas y audio. Los párrafos de la carta están agrupados en páginas. Sustituye `[Tu nombre]` mediante `sender`. Las referencias bíblicas y sus explicaciones están en `verses` y enlazan a jw.org.
 
-Para mostrar la ilustración definitiva, coloca un PNG transparente en `public/assets/ady-2d.png` o cambia `illustration` a un archivo WebP. Si no existe, aparece una silueta provisional sin rasgos faciales. La música instrumental original está incluida en `public/audio/jardin-de-ady.wav` y se reproduce en bucle. Al abrir la carta y pasar de página suenan efectos de papel y se anima el giro de página. Todo el sonido está apagado al cargar; «Reproducir música» permite iniciarla, pausarla y ajustar el volumen. El control indica si el navegador pudo reproducirla. `audio.enabled` puede ocultarlo.
+Para mostrar la ilustración definitiva, coloca un PNG transparente en `public/assets/ady-2d.png` o cambia `illustration` a un archivo WebP. Si no existe, aparece una silueta provisional sin rasgos faciales. La música instrumental original está incluida en `public/audio/jardin-de-ady.wav` y se reproduce en bucle. La música y los efectos comienzan con el primer clic o toque dentro de la página; nunca se reproducen antes de una interacción. «Reproducir música» permite iniciarla, pausarla y ajustar el volumen, e indica si el navegador pudo reproducirla. Al abrir la carta y pasar de página suenan efectos de papel y se anima el giro de página. `audio.enabled` puede ocultar el control.
 
 ## Publicación
 
