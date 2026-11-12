@@ -108,3 +108,13 @@
 @media(max-width:380px){.intro-scene .garden{height:260px}.intro-scene .flower-slot{flex-basis:14.4%;margin-left:-3.4%}}
 @media(prefers-reduced-motion:reduce){.bee{left:10px;top:5px}}
 @media(min-width:701px){.intro-scene .garden{height:270px}}
+/* La abejita es un botón pequeño, se detiene al tocarla y comparte una nota. */
+.bee-flight{pointer-events:none}
+.bee{display:block;padding:0;border:0;background:transparent;cursor:pointer;pointer-events:auto}
+.bee-drawing{width:100%;height:100%;overflow:visible;transition:filter .25s}
+.bee:hover .bee-drawing,.bee:focus-visible .bee-drawing{filter:drop-shadow(0 3px 6px #d6a85088)}
+.bee.bee-paused{animation-play-state:paused}
+.bee-message{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:40;max-width:min(320px,calc(100vw - 28px));width:max-content;padding:15px 20px;background:#fffdf7;border:1px solid #ddd0ba;box-shadow:0 12px 32px #56473e29;color:#496754;font:1.1rem/1.3 'Cormorant Garamond',serif;text-align:center;pointer-events:none}
+.bee-message span{display:block;margin-top:8px;color:#7d7469;font:600 .63rem Onest,sans-serif;letter-spacing:.03em}
+.final-signature{font:600 1.55rem Caveat,cursive!important;color:#a1768e;margin-top:20px!important}
+@media(max-width:700px){.bee-message{bottom:12px;font-size:1rem}}
