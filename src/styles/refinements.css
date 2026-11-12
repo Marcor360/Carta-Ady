@@ -1,0 +1,27 @@
+.chapter-heading{display:flex;align-items:baseline;gap:16px;padding:0 0 13px;margin:0 0 22px;border-bottom:1px solid #dfd7c8}
+.chapter-heading span{font:700 .58rem Onest,sans-serif;letter-spacing:.19em;color:#a88391;white-space:nowrap}
+.chapter-heading h3{margin:0;font:500 clamp(1.35rem,2.6vw,1.75rem)/1.1 'Cormorant Garamond',serif;color:#496754}
+.letter-progress{height:4px;margin-top:14px;border-radius:6px;background:#e7e1d6;overflow:hidden}
+.letter-progress span{display:block;height:100%;border-radius:6px;background:#9aae91;transition:width .45s ease}
+.swipe-hint{display:none!important}
+.letter-paper{background-image:linear-gradient(90deg,#faf5e9 0,#fffdf7 4%,#fffdf7 96%,#faf5e9 100%),radial-gradient(circle,#e8dbc6 1px,transparent 1px);background-size:auto,8px 8px}
+.letter-paper h2{letter-spacing:-.035em}
+.letter-controls button:not(:disabled):hover{color:#a1768e;text-decoration:underline;text-underline-offset:4px}
+.final-visual:before{content:'';position:absolute;z-index:0;top:7%;bottom:13%;left:10%;right:10%;border:1px solid #d9cdb7;border-radius:48% 48% 5px 5px;box-shadow:0 0 0 9px #fff9f34d,0 0 0 10px #d9cdb755;pointer-events:none}
+.final-visual:after{content:'UN JARDÍN PARA ADY';position:absolute;z-index:2;bottom:7%;left:50%;transform:translateX(-50%);white-space:nowrap;letter-spacing:.27em;font:700 .55rem Onest,sans-serif;color:#9a8a77}
+.final-copy h2{font-size:clamp(4.2rem,6vw,7rem)}
+.final-signature{border-top:1px solid #dccfbd;display:inline-block;padding-top:14px}
+@media(max-width:700px){.chapter-heading{display:block;margin-bottom:18px}.chapter-heading h3{margin-top:6px;font-size:1.5rem}.swipe-hint{display:block!important;text-align:center;color:#93877a;font:.64rem Onest,sans-serif;margin:11px 0 0!important}.final-visual:before{top:9%;bottom:15%;left:3%;right:3%}.final-visual:after{bottom:10%;font-size:.48rem}.final-copy h2{font-size:clamp(3.55rem,15vw,5rem)}}
+@media(prefers-reduced-motion:reduce){.letter-progress span{transition:none}}
+.final-visual:after{display:none}
+.bouquet-button{position:relative;z-index:2;width:min(100%,470px);height:570px;border:0;background:transparent;padding:0;display:grid;place-items:center;cursor:pointer;border-radius:45% 45% 8% 8%}
+.bouquet-button .ady-illustration{width:100%;height:100%}
+.bouquet-button:hover .ady-placeholder-svg{filter:drop-shadow(0 11px 18px #e4b86666)}
+.bouquet-hint{position:absolute;z-index:3;bottom:2%;left:50%;transform:translateX(-50%);white-space:nowrap;color:#877a6d;font:700 .62rem Onest,sans-serif;letter-spacing:.07em;pointer-events:none}
+.burst-petals{position:absolute;top:46%;left:50%;z-index:4;pointer-events:none}
+.burst-petals span{position:absolute;width:12px;height:19px;border-radius:85% 12% 75% 14%;background:#efa6b5;transform-origin:50% 150px;animation:petal-burst 1.6s ease-out forwards}
+.burst-petals span:nth-child(3n){background:#c9b6e4}.burst-petals span:nth-child(3n+1){background:#f4d98b}
+.final-visual.bursting .final-halo{animation:bouquet-flash 1.5s ease-out both}
+@keyframes petal-burst{0%{opacity:0;transform:rotate(var(--angle)) translateY(0) scale(.3)}18%{opacity:.9}100%{opacity:0;transform:rotate(var(--angle)) translateY(-155px) scale(1.1)}}
+@media(max-width:700px){.bouquet-button{width:min(100%,340px);height:390px}.bouquet-hint{bottom:1%;font-size:.56rem}.burst-petals span{width:9px;height:15px}@keyframes petal-burst{0%{opacity:0;transform:rotate(var(--angle)) translateY(0) scale(.3)}18%{opacity:.8}100%{opacity:0;transform:rotate(var(--angle)) translateY(-105px) scale(1)}}}
+@media(prefers-reduced-motion:reduce){.burst-petals span{animation:none;display:none}.final-visual.bursting .final-halo{animation:none}}

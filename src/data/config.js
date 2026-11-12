@@ -23,6 +23,16 @@ export const config = {
   intro: ['Hay flores que tardan en florecer...', 'Pero cuando lo hacen, nos recuerdan lo hermoso que es crecer.', 'Hoy quiero regalarte unas flores, Ady. 🌷'],
   messages: ['Pequeña Ady, hoy es un día muy especial.', 'Terminaste tu primera Escuela del Servicio de Precursor.', 'Sé cuánto te esfuerzas por seguir adelante. Y aunque unas flores no bastan para celebrarlo, quise prepararte algo diferente.'],
   letterTitle: 'Para ti, Ady 🌷',
+  pageTitles: [
+    'Este día es tuyo',
+    'Crecer a tu ritmo',
+    'Un corazón que sabe perdonar',
+    'Lo que Jehová sí ve',
+    'Un paso a la vez',
+    'El valor de seguir',
+    'Todas tus formas de florecer',
+    'Hasta la próxima flor'
+  ],
   letterPages: [
     [
       '¡Felicidades, Pequeña Ady!',

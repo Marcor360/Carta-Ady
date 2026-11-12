@@ -1,6 +1,6 @@
 # Un jardín de tulipanes para Ady 🌷
 
-Carta digital interactiva construida con React, Vite, Motion y SVG. Incluye nueve tulipanes que crecen por etapas, cinco mensajes florales, una abejita que rodea la carta, un ramo con destellos, una melodía instrumental original y efectos de papel. No requiere servidor ni base de datos.
+Carta digital interactiva construida con React, Vite, Motion y SVG. Incluye nueve tulipanes que crecen por etapas, cinco mensajes florales, una abejita interactiva, capítulos de lectura, un ramo que responde al tacto, una melodía instrumental original y efectos de papel. No requiere servidor ni base de datos.
 
 ## Desarrollo
 
@@ -20,7 +20,7 @@ npm run preview
 
 ## Personalización
 
-Edita `src/data/config.js` para cambiar nombre, remitente (`sender`), mensaje de la abejita (`beeMessage`), párrafos, referencias, colores, tiempos, partículas y audio. Los párrafos de la carta están agrupados en páginas. Las referencias bíblicas y sus explicaciones están en `verses` y enlazan a jw.org. La abejita se puede tocar o activar con el teclado para detenerla y leer su nota.
+Edita `src/data/config.js` para cambiar nombre, remitente (`sender`), mensaje de la abejita (`beeMessage`), párrafos, títulos de los capítulos (`pageTitles`), referencias, colores, tiempos, partículas y audio. Los párrafos están agrupados en páginas. Las referencias bíblicas y sus explicaciones están en `verses` y enlazan a jw.org. La abejita se puede tocar o activar con el teclado para detenerla y leer su nota. En teléfono, desliza lateralmente para pasar página; el desplazamiento vertical permite seguir leyendo. Toca el ramo final para repetir el destello.
 
 Para mostrar la ilustración definitiva, coloca un PNG transparente en `public/assets/ady-2d.png` o cambia `illustration` a un archivo WebP. Si no existe, aparece una silueta provisional sin rasgos faciales. La música instrumental original está incluida en `public/audio/jardin-de-ady.wav` y se reproduce en bucle. La música y los efectos comienzan con el primer clic o toque dentro de la página; nunca se reproducen antes de una interacción. «Reproducir música» permite iniciarla, pausarla y ajustar el volumen, e indica si el navegador pudo reproducirla. Al abrir la carta y pasar de página suenan efectos de papel y se anima el giro de página. `audio.enabled` puede ocultar el control.
 
