@@ -8,7 +8,7 @@
 .table-bouquet.taken{opacity:0;transform:translate(18%,-8%) rotate(9deg)}
 .surprise-character{position:absolute;z-index:5;right:-5%;bottom:7%;width:70%;height:88%;opacity:0;transform:translateX(80%);transition:transform .7s ease-out,opacity .25s ease}
 .surprise-character.visible{opacity:1;transform:translateX(0)}
-.phase-1 .surprise-character{transform:translateX(38%)}.phase-2 .surprise-character{transform:translateX(20%)}.phase-3 .surprise-character{transform:translateX(0)}.phase-4 .surprise-character{transform:translateX(-3%)}.phase-5 .surprise-character{transform:translateX(-33%)}.phase-6 .surprise-character{transform:translateX(-15%)}
+.phase-1 .surprise-character{transform:translateX(42%)}.phase-2 .surprise-character{transform:translateX(34%)}.phase-3 .surprise-character{transform:translateX(25%)}.phase-4 .surprise-character{transform:translateX(15%)}.phase-5 .surprise-character{transform:translateX(0)}.phase-8 .surprise-character{transform:translateX(-2%)}.phase-9 .surprise-character{transform:translateX(-3%)}.phase-10 .surprise-character{transform:translateX(-33%)}.phase-11 .surprise-character{transform:translateX(-25%)}.phase-12 .surprise-character{transform:translateX(-15%)}.phase-13 .surprise-character{transform:translateX(-8%)}
 .surprise-person{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 16px 13px #76508235);pointer-events:none;transition:opacity .14s ease-in-out}
 .surprise-person.active{opacity:1}
 .surprise-stage-sparkle{position:absolute;z-index:7;color:#e5bb66;font-size:1.7rem;opacity:0;pointer-events:none}.sparkle-one{top:18%;left:42%}.sparkle-two{top:30%;right:8%;color:#d59cc0}
