@@ -11,7 +11,7 @@ import { setEffectsEnabled, soundEffect } from './audio.js'
 
 const fade = {initial:{opacity:0,y:18},animate:{opacity:1,y:0},exit:{opacity:0,y:-12},transition:{duration:.65}}
 function RichText({text}) {return text.split(/(\*\*[^*]+\*\*)/g).map((part,i)=>{if(!part.startsWith('**'))return part.replace('[Tu nombre]',config.sender);const value=part.slice(2,-2).replace('[Tu nombre]',config.sender),verse=config.verses[value];return verse?<a className="verse-link" key={i} href={verse.url} target="_blank" rel="noopener noreferrer" aria-label={`Leer ${value} en jw.org (se abre en otra pestaña)`}>{value} <span aria-hidden="true">↗</span></a>:<strong key={i}>{value}</strong>})}
-function SoundToggle(){
+function SoundToggle({scene}){
  const audio=useRef(null),consumed=useRef(false),starting=useRef(false)
  const [on,setOn]=useState(false),[volume,setVolume]=useState(.9),[error,setError]=useState('')
  useEffect(()=>{
@@ -26,6 +26,12 @@ function SoundToggle(){
   document.addEventListener('keydown',firstInteraction,true)
   return()=>{document.removeEventListener('pointerdown',firstInteraction,true);document.removeEventListener('keydown',firstInteraction,true);audio.current?.pause();setEffectsEnabled(false)}
  },[])
+ useEffect(()=>{
+  if(!audio.current)return
+  audio.current.src=scene==='surprise'?'/audio/ady-sorpresa.wav':config.audio.src
+  audio.current.load()
+  if(on)audio.current.play().catch(()=>{setOn(false);setEffectsEnabled(false);setError('Toca «Reproducir música» para escuchar esta escena.')})
+ },[scene])
  if(!config.audio.enabled)return null
  async function toggle(){
   if(on){audio.current.pause();setEffectsEnabled(false);setOn(false);return}
@@ -37,7 +43,8 @@ function SoundToggle(){
 }
 export default function App(){
  const [scene,setScene]=useState('intro'),[introStep,setIntroStep]=useState(0),[messageStep,setMessageStep]=useState(0),[page,setPage]=useState(0),[secret,setSecret]=useState(false),[opening,setOpening]=useState(false),[turning,setTurning]=useState(false),[burst,setBurst]=useState(0)
- const reduce=useReducedMotion();const contentRef=useRef(null),touchStart=useRef(null)
+ const reduce=useReducedMotion();const contentRef=useRef(null),touchStart=useRef(null),bouquetTaps=useRef([]),holdTimer=useRef(null),held=useRef(false)
+ useEffect(()=>()=>clearTimeout(holdTimer.current),[])
  useEffect(()=>{if(scene!=='intro')return; const timers=[2000,3900,6000].map((ms,i)=>setTimeout(()=>setIntroStep(i+1),reduce?100+i*100:ms));return()=>timers.forEach(clearTimeout)},[scene,reduce])
  useEffect(()=>{if(scene!=='message')return;setMessageStep(0);const timers=[1800,3900,6100].map((ms,i)=>setTimeout(()=>setMessageStep(i+1),reduce?100+i*100:ms));return()=>timers.forEach(clearTimeout)},[scene,reduce])
  useEffect(()=>{contentRef.current?.focus();window.scrollTo({top:0,behavior:reduce?'instant':'smooth'})},[scene,page,reduce])
@@ -46,9 +53,13 @@ export default function App(){
  function onLetterTouchStart(event){touchStart.current={x:event.touches[0].clientX,y:event.touches[0].clientY}}
  function onLetterTouchEnd(event){if(!touchStart.current)return;const dx=event.changedTouches[0].clientX-touchStart.current.x,dy=event.changedTouches[0].clientY-touchStart.current.y;touchStart.current=null;if(Math.abs(dx)<80||Math.abs(dx)<Math.abs(dy)*1.5)return;if(dx<0&&page<config.letterPages.length-1)turnPage(page+1);else if(dx>0&&page>0)turnPage(page-1)}
  function sparkleBouquet(){soundEffect('final');setBurst(value=>value+1);window.setTimeout(()=>setBurst(0),1700)}
+ function enterSurprise(){clearTimeout(holdTimer.current);bouquetTaps.current=[];soundEffect('final');setScene('surprise')}
+ function onBouquetPointerDown(event){if(event.pointerType==='mouse'&&event.button!==0)return;held.current=false;clearTimeout(holdTimer.current);holdTimer.current=window.setTimeout(()=>{held.current=true;enterSurprise()},5000)}
+ function onBouquetPointerEnd(){clearTimeout(holdTimer.current)}
+ function onBouquetClick(){if(held.current){held.current=false;return}const now=Date.now();bouquetTaps.current=[...bouquetTaps.current.filter(time=>now-time<1100),now];if(bouquetTaps.current.length>=3&&now-bouquetTaps.current[0]<=1100){enterSurprise();return}sparkleBouquet()}
  function restart(){setScene('intro');setIntroStep(0);setPage(0)}
  return <div className={`app scene-${scene}`} style={{'--speed':`${config.animationSeconds}s`}}>
-  <div className="grain" aria-hidden="true"/><SoundToggle/>
+  <div className="grain" aria-hidden="true"/><SoundToggle scene={scene}/>
   {scene!=='intro'&&<button className="home-link" onClick={restart}>↶ Volver al jardín</button>}
   <FloatingPetals active={scene!=='letter'&&!reduce}/>
   <AnimatePresence mode="wait">
@@ -67,7 +78,10 @@ export default function App(){
     <div className="letter-side-flower">✿</div><div className="letter-paper" onTouchStart={onLetterTouchStart} onTouchEnd={onLetterTouchEnd}><LetterBee onDiscover={()=>soundEffect('flower')}/><div className="letter-ornament">✳ &nbsp; UNA CARTA PARA TI &nbsp; ✳</div><h2>{config.letterTitle}</h2><div className="letter-rule"/>{turning&&<div className="letter-page-turn" aria-hidden="true"/>}<AnimatePresence mode="wait"><motion.div key={page} className="letter-body" initial={{opacity:0,x:18}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-18}} transition={{duration:reduce?.1:.45}}><div className="chapter-heading"><span>CAPÍTULO {String(page+1).padStart(2,'0')}</span><h3>{config.pageTitles[page]}</h3></div>{config.letterPages[page].map((p,i)=><motion.div className="letter-paragraph" key={i} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{delay:reduce?0:i*.18}}><p><RichText text={p}/></p>{Object.entries(config.verses).map(([name,verse])=>p.includes(`**${name}**`)&&<aside className="verse-note" key={name}><span>PARA LLEVAR EN EL CORAZÓN</span><p>{verse.explanation}</p><a href={verse.url} target="_blank" rel="noopener noreferrer">Leer {name} en jw.org →</a></aside>)}</motion.div>)}</motion.div></AnimatePresence><div className="letter-controls"><button disabled={page===0} onClick={()=>turnPage(page-1)}>← Página anterior</button><span>{String(page+1).padStart(2,'0')} / {String(config.letterPages.length).padStart(2,'0')}</span>{page<config.letterPages.length-1?<button onClick={()=>turnPage(page+1)}>Continuar leyendo →</button>:<button onClick={()=>{soundEffect('final');setScene('final')}}>Ver mi regalo →</button>}</div><div className="letter-progress" role="progressbar" aria-label="Progreso de la carta" aria-valuemin="1" aria-valuemax={config.letterPages.length} aria-valuenow={page+1}><span style={{width:`${(page+1)/config.letterPages.length*100}%`}}/></div><p className="swipe-hint">Desliza hacia un lado para pasar la página</p></div><div className="letter-side-flower right">✿</div>
    </motion.main>}
    {scene==='final'&&<motion.main key="final" className="scene final-scene" {...fade} ref={contentRef} tabIndex={-1}>
-    <div className={`final-visual ${burst?'bursting':''}`}><div className="final-halo"/><div className="final-flash" aria-hidden="true"/><button className="bouquet-button" type="button" onClick={sparkleBouquet} aria-label="Hacer brillar el ramo de tulipanes"><AdyIllustration/></button>{burst>0&&<div className="burst-petals" key={burst} aria-hidden="true">{Array.from({length:9},(_,i)=><span key={i} style={{'--angle':`${i*40}deg`}}/>)}</div>}<div className="final-ground"/><span className="bouquet-hint">✦ Toca el ramo para hacerlo brillar</span></div><div className="final-copy"><p className="eyebrow">UNA FLOR QUE NUNCA SE MARCHITA &nbsp; · &nbsp; 05 / 05</p><h2>{config.finalTitle}</h2><p>{config.finalLines[0]}</p><p className="final-small">{config.finalLines[1]}</p><p className="final-signature">{config.finalSignature}</p><div className="final-actions"><button className="primary-button" onClick={()=>{setPage(0);setScene('letter')}}>Volver a leer mi carta →</button><button className="text-button" onClick={restart}>Ver de nuevo mis flores ↶</button></div></div>
+    <div className={`final-visual ${burst?'bursting':''}`}><div className="final-halo"/><div className="final-flash" aria-hidden="true"/><button className="bouquet-button" type="button" onPointerDown={onBouquetPointerDown} onPointerUp={onBouquetPointerEnd} onPointerCancel={onBouquetPointerEnd} onPointerLeave={onBouquetPointerEnd} onContextMenu={e=>e.preventDefault()} onClick={onBouquetClick} aria-label="Tocar el ramo para hacerlo brillar; tres toques rápidos o mantener cinco segundos abre una sorpresa"><AdyIllustration/></button>{burst>0&&<div className="burst-petals" key={burst} aria-hidden="true">{Array.from({length:9},(_,i)=><span key={i} style={{'--angle':`${i*40}deg`}}/>)}</div>}<div className="final-ground"/><span className="bouquet-hint">✦ Toca para brillar · 3 toques rápidos o mantén 5 segundos</span></div><div className="final-copy"><p className="eyebrow">UNA FLOR QUE NUNCA SE MARCHITA &nbsp; · &nbsp; 05 / 05</p><h2>{config.finalTitle}</h2><p>{config.finalLines[0]}</p><p className="final-small">{config.finalLines[1]}</p><p className="final-signature">{config.finalSignature}</p><div className="final-actions"><button className="primary-button" onClick={()=>{setPage(0);setScene('letter')}}>Volver a leer mi carta →</button><button className="text-button" onClick={restart}>Ver de nuevo mis flores ↶</button></div></div>
+   </motion.main>}
+   {scene==='surprise'&&<motion.main key="surprise" className="scene surprise-scene" {...fade} ref={contentRef} tabIndex={-1}>
+    <div className="surprise-sparkles" aria-hidden="true">✦ <span>✧</span> ✦</div><div className="surprise-art"><img src="/assets/ady-ramo-feliz.png" alt="Ady, feliz, tomando un ramo de tulipanes"/></div><div className="surprise-copy"><p className="eyebrow">UNA SORPRESA PARA TI</p><h2>Estas flores<br/><em>son tuyas, Ady.</em></h2><p>Que cada una te recuerde lo bonito que es verte sonreír.</p><button className="primary-button" onClick={()=>setScene('final')}>Volver al ramo ↶</button></div>
    </motion.main>}
   </AnimatePresence>
   <AnimatePresence>{secret&&<motion.div className="secret-overlay" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSecret(false)}><motion.div className="secret-card" initial={{scale:.9,y:20}} animate={{scale:1,y:0}} onClick={e=>e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Mensaje secreto"><button onClick={()=>setSecret(false)} aria-label="Cerrar mensaje">×</button><span>✿</span><p>{config.secret}</p></motion.div></motion.div>}</AnimatePresence>
