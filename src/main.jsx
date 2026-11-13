@@ -4,4 +4,5 @@ import App from './App.jsx'
 import './styles/globals.css'
 import './styles/enhancements.css'
 import './styles/refinements.css'
+import './styles/surprise-animation.css'
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>)

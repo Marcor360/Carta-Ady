@@ -6,6 +6,7 @@ import FloatingPetals from './components/FloatingPetals.jsx'
 import Envelope from './components/Envelope.jsx'
 import AdyIllustration from './components/AdyIllustration.jsx'
 import LetterBee from './components/LetterBee.jsx'
+import SurpriseScene from './components/SurpriseScene.jsx'
 import { config } from './data/config.js'
 import { setEffectsEnabled, soundEffect } from './audio.js'
 
@@ -81,7 +82,7 @@ export default function App(){
     <div className={`final-visual ${burst?'bursting':''}`}><div className="final-halo"/><div className="final-flash" aria-hidden="true"/><button className="bouquet-button" type="button" onPointerDown={onBouquetPointerDown} onPointerUp={onBouquetPointerEnd} onPointerCancel={onBouquetPointerEnd} onPointerLeave={onBouquetPointerEnd} onContextMenu={e=>e.preventDefault()} onClick={onBouquetClick} aria-label="Tocar el ramo para hacerlo brillar; tres toques rápidos o mantener cinco segundos abre una sorpresa"><AdyIllustration/></button>{burst>0&&<div className="burst-petals" key={burst} aria-hidden="true">{Array.from({length:9},(_,i)=><span key={i} style={{'--angle':`${i*40}deg`}}/>)}</div>}<div className="final-ground"/><span className="bouquet-hint">✦ Toca para brillar · 3 toques rápidos o mantén 5 segundos</span></div><div className="final-copy"><p className="eyebrow">UNA FLOR QUE NUNCA SE MARCHITA &nbsp; · &nbsp; 05 / 05</p><h2>{config.finalTitle}</h2><p>{config.finalLines[0]}</p><p className="final-small">{config.finalLines[1]}</p><p className="final-signature">{config.finalSignature}</p><div className="final-actions"><button className="primary-button" onClick={()=>{setPage(0);setScene('letter')}}>Volver a leer mi carta →</button><button className="text-button" onClick={restart}>Ver de nuevo mis flores ↶</button></div></div>
    </motion.main>}
    {scene==='surprise'&&<motion.main key="surprise" className="scene surprise-scene" {...fade} ref={contentRef} tabIndex={-1}>
-    <div className="surprise-sparkles" aria-hidden="true">✦ <span>✧</span> ✦</div><div className="surprise-art"><img src="/assets/ady-ramo-feliz.png" alt="Ady, feliz, tomando un ramo de tulipanes"/></div><div className="surprise-copy"><p className="eyebrow">UNA SORPRESA PARA TI</p><h2>Estas flores<br/><em>son tuyas, Ady.</em></h2><p>Que cada una te recuerde lo bonito que es verte sonreír.</p><button className="primary-button" onClick={()=>setScene('final')}>Volver al ramo ↶</button></div>
+    <SurpriseScene reduceMotion={reduce} onBack={()=>setScene('final')}/>
    </motion.main>}
   </AnimatePresence>
   <AnimatePresence>{secret&&<motion.div className="secret-overlay" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=>setSecret(false)}><motion.div className="secret-card" initial={{scale:.9,y:20}} animate={{scale:1,y:0}} onClick={e=>e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Mensaje secreto"><button onClick={()=>setSecret(false)} aria-label="Cerrar mensaje">×</button><span>✿</span><p>{config.secret}</p></motion.div></motion.div>}</AnimatePresence>
